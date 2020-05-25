@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Abhijeet</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css">
+    <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+</head>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+
+<div class="card text-center">
+    <div class="jumbotron">
+        <h1 class="display-4">Hello, India!</h1>
+        <p class="lead">This is a simple dashborad to extra attention to featured content or information about
+            pandemic.</p>
+        <hr class="my-4">
+        <p>Below is the larger container.</p>
+        <p class="lead">
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">LIVE UPDATES</div>
+                <div class="card-body">
+                    <h5 class="card-title">Maharashtra </h5>
+        <p class="card-text">
+            <span id="result"></span><a href="javascript:void();" id="cal"></a>
+        </p>
+
+    </div>
+
+    <div class="card-footer text-muted">
+        Time : <span id="result2"></span>
+    </div>
+</div>
+<div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+  <div class="card-header">LIVE UPDATES</div>
+  <div class="card-body">
+    <h5 class="card-title">Mumbai</h5>
+    <p class="card-text"><span id="result3"></span><a href="javascript:void();" id="cal1"></a></p>
+  </div>
+    <div class="card-footer text-muted">
+        Time : <span id="result4"></span>
+    </div>
+</div>
+</p>
+</div>
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+    $(function() {
+      $('a#cal').bind('click', function() {
+        $.getJSON('/live', function(data) {
+
+          $('#result').text( data.result);
+           $('#result2').text( data.result2);
+           $('#result3').text( data.result3);
+           $('#result4').text( data.result4);
+          });
+        return false;
+      });
+    });
+
+</script>
+<script>
+    $(document).ready(function() {
+  setInterval(function() {
+    $("a#cal").trigger('click');
+  }, 500);
+});
+
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<!-- Page level plugin JavaScript-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+</div>
+</body>
+</html>

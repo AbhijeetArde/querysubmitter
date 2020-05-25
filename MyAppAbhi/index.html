@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>ABHIJEET</title>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="//cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        var t = $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    } );
+        $('input[name="a"]').val(1);
+        $('input[name="b"]').val(1000);
+        $('a#calculate').bind('click', function() {
+            $.getJSON($SCRIPT_ROOT + '/ajax', {
+                a: $('input[name="a"]').val(),
+                b: $('input[name="b"]').val()
+            }, function(data) {
+                t.row.add(["Num",data.result]).draw( false );
+
+        });
+        return false;
+        });
+    });
+    </script>
+    <script>
+
+$(document).ready(function() {
+  setInterval(function() {
+    $("#calculate").trigger('click');
+  }, 5000);
+});
+
+</script>
+    <script type=text/javascript>
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+
+</head>
+<body>
+    <h1 id="qq">Abhijeet App</h1>
+    <table id="example" class="table table-striped table-bordered" style="width:100%">
+
+        <thead>
+    <tr>
+    <th>Random</th>
+    <th>Number</th>
+    </tr>
+        </thead>
+    </table>
+    <h2>Random Numbers from</h2>
+    <p><input type=text size=5 name=a> to
+    <input type=text size=5 name=b>
+    <p><a href=# id=calculate>UPDATE server side</a>
+</body>
